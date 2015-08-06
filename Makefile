@@ -5,8 +5,8 @@ deploy: all
 	git push -f heroku master
 	heroku logs -t
 
-create:
+createschema:
 	heroku pg:psql < schema.sql
 
 inspect:
-	echo "select count(*) from logs; select * from logs limit 1;" | heroku pg:psql
+	echo "select count(*) from logs; select * from logs order by id desc limit 15;" | heroku pg:psql
