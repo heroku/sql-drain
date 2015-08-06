@@ -10,14 +10,6 @@ var db *sql.DB
 var insertStmt *sql.Stmt
 
 func Insert(privalVersion, time, hostname, name, procid, msgid, data []byte) error {
-	log.Print("Insert received: ",
-		string(privalVersion),
-		string(time),
-		string(hostname),
-		string(name),
-		string(procid),
-		string(msgid),
-		string(data))
 	_, err := insertStmt.Exec(
 		string(privalVersion),
 		string(time),
@@ -40,6 +32,7 @@ func init() {
 	if err != nil {
 		log.Fatalf("Unable to ping DB: %v", err)
 	}
+
 	insertStmt, err = db.Prepare(
 		"INSERT into logs(privalversion, time, hostname, name, procid, msgid, data) VALUES ($1, $2, $3, $4, $5, $6, $7);")
 	if err != nil {

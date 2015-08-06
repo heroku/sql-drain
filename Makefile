@@ -1,7 +1,7 @@
 all:
 	go build
 
-d: all
+deploy: all
 	git push -f heroku master
 	heroku logs -t
 
@@ -10,4 +10,3 @@ create:
 
 inspect:
 	echo "select count(*) from logs; select * from logs limit 1;" | heroku pg:psql
- 

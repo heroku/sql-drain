@@ -12,9 +12,6 @@ func logsHandler(w http.ResponseWriter, r *http.Request) {
 	for lp.Next() {
 		hdr := lp.Header()
 		data := lp.Bytes()
-		log.Printf("Received frame\n")
-		log.Printf("  Header: %+v\n", lp.Header())
-		log.Printf("  Bytes: %v\n", string(data))
 		err := Insert(
 			hdr.PrivalVersion, hdr.Time, hdr.Hostname, hdr.Name, hdr.Procid, hdr.Msgid, data)
 		if err != nil {
