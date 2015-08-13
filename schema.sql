@@ -4,7 +4,7 @@ DROP TABLE logs;
 
 CREATE TABLE logs (
        id SERIAL,
-       received timestamp default now(),
+       received timestamp with time zone default now(),
        privalversion text,
        time text,
        hostname text,
